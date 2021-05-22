@@ -7,14 +7,19 @@ def combinatenumber(num):
     #numbers.append(num)
     #T.delete(0.0, tk.END)
     #T.insert(tk.END, num)
+    result['text']=""
     T['text'] += num
 
-
+def calculate():
+    result['text'] = eval(T['text'])
+    
+def clear():
+    result['text'] = ""
+    T['text'] = ""
 
 root = tk.Tk()
 
-
-
+root.title("Simple Calculator")
 
 canvas = tk.Canvas(root, height=500, width=500, bg = "#263D42")
 canvas.grid(columnspan=3, rowspan=4)
@@ -38,17 +43,23 @@ button2.grid(column=1, row=2)
 button3 = tk.Button(canvas, text="3", width=10, height=5, command=lambda:combinatenumber("3"))
 button3.grid(column=2, row=2)
 
-div = tk.Button(canvas, text="/", width=10, height=5)
+div = tk.Button(canvas, text="/", width=10, height=5, command=lambda:combinatenumber("/"))
 div.grid(column=3, row=0)
-mul = tk.Button(canvas, text="*", width=10, height=5)
+mul = tk.Button(canvas, text="*", width=10, height=5, command=lambda:combinatenumber("*"))
 mul.grid(column=3, row=1)
-min = tk.Button(canvas, text="-", width=10, height=5)
+min = tk.Button(canvas, text="-", width=10, height=5, command=lambda:combinatenumber("-"))
 min.grid(column=3, row=2)
-plu = tk.Button(canvas, text="+", width=10, height=5)
+plu = tk.Button(canvas, text="+", width=10, height=5, command=lambda:combinatenumber("+"))
 plu.grid(column=3, row=3)
+cal = tk.Button(canvas, text="Calculate", width=10, height=5, command=lambda:calculate())
+cal.grid(column=2, row=3)
+cal = tk.Button(canvas, text="Clear", width=10, height=5, command=lambda:clear())
+cal.grid(column=1, row=3)
 
 T = tk.Label(root, text="")
 T.grid(column=0, row=4)
+result = tk.Label(root, text="")
+result.grid(column=2, row=4)
 
 root.mainloop()
 
